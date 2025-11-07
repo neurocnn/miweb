@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asesoría Académica | TFG y TFM</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f9f9f9; color: #333; }
+    header { background: #1a73e8; color: white; padding: 2rem 1rem; text-align: center; }
+    header h1 { margin: 0; font-size: 2rem; }
+    nav { background: #0f5bd5; text-align: center; }
+    nav a { color: white; text-decoration: none; margin: 0 1rem; display: inline-block; padding: 1rem 0; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    section { max-width: 900px; margin: auto; padding: 3rem 1rem; }
+    h2 { color: #1a73e8; margin-top: 0; }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 1.5rem; }
+    form { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+    input, textarea { width: 100%; padding: 0.75rem; margin-top: 0.5rem; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; }
+    button { background: #1a73e8; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; margin-top: 1rem; font-size: 1rem; }
+    button:hover { background: #1558b0; }
+    footer { text-align: center; background: #0f5bd5; color: white; padding: 1.5rem; font-size: 0.9rem; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Asesoría Académica para TFG y TFM</h1>
+    <p>Orientación profesional, revisión y apoyo metodológico para tu proyecto final</p>
+  </header>
+
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#sobremi">Sobre mí</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <div class="services">
+      <div class="card">
+        <h3>Asesoría personalizada</h3>
+        <p>Sesiones individuales para definir tema, objetivos, metodología y estructura del trabajo.</p>
+      </div>
+      <div class="card">
+        <h3>Revisión y corrección</h3>
+        <p>Corrección de estilo, formato APA/Normas de la universidad, coherencia y redacción académica.</p>
+      </div>
+      <div class="card">
+        <h3>Orientación metodológica</h3>
+        <p>Apoyo en diseño experimental, análisis de datos y redacción de resultados.</p>
+      </div>
+      <div class="card">
+        <h3>Búsqueda bibliográfica</h3>
+        <p>Ayuda para localizar artículos relevantes y gestionar referencias con Mendeley o Zotero.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobremi">
+    <h2>Sobre mí</h2>
+    <p>Soy profesor universitario con amplia experiencia dirigiendo y evaluando Trabajos Fin de Grado y Fin de Máster. 
+    Ofrezco asesoramiento académico para que desarrolles tu proyecto con rigor, estructura y confianza. 
+    Mi objetivo es que aprendas a elaborar un trabajo de calidad, comprendiendo el proceso completo de investigación.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <h4>¿Realizáis los trabajos por los estudiantes?</h4>
+    <p>No. Ofrecemos <strong>asesoría académica y orientación metodológica</strong> para que el estudiante desarrolle su propio trabajo con ayuda profesional.</p>
+
+    <h4>¿Qué incluye una sesión de asesoría?</h4>
+    <p>Revisión del estado actual del trabajo, orientación sobre metodología, formato, redacción o análisis de datos, y planificación de pasos siguientes.</p>
+
+    <h4>¿Puedo solicitar revisión de capítulos sueltos?</h4>
+    <p>Sí, puedes enviar únicamente una parte (por ejemplo, introducción o discusión) para revisión o corrección.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form action="https://formspree.io/f/tu_codigo_aqui" method="POST">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" required>
+
+      <label>Mensaje:</label>
+      <textarea name="mensaje" rows="5" placeholder="Cuéntame brevemente en qué puedo ayudarte..." required></textarea>
+
+      <button type="submit">Enviar mensaje</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem;">O reserva una cita por <a href="https://calendly.com/" target="_blank">Calendly</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Asesoría Académica | Profesor Universitario</p>
+    <p>Este sitio ofrece apoyo académico y orientación metodológica. No se realizan trabajos académicos por encargo.</p>
+  </footer>
+</body>
+</html>
