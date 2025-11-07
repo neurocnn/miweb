@@ -7,39 +7,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Poppins', sans-serif; margin: 0; background-color: #f9f6f2; color: #333; }
-    header { background: #9dbfa3; color: white; padding: 3rem 1rem; text-align: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
-    header h1 { margin: 0; font-size: 2rem; }
-    nav { text-align: center; padding: 1rem 0; background: #a8cbb7; }
-    nav a { display: inline-block; margin: 0 0.5rem; text-decoration: none; color: white; font-weight: 600; padding: 0.5rem 1rem; border-radius: 8px; background: #9dbfa3; transition: background 0.3s; }
-    nav a:hover { background: #f4a78b; }
-    section { max-width: 900px; margin: 2rem auto; padding: 2rem 1rem; display: none; }
-    section.active { display: block; }
-    .resource-list, .paquete-list { display: grid; gap: 1rem; }
-    .resource-card, .paquete-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1.5rem; cursor: pointer; text-align: center; transition: transform 0.2s; }
-    .resource-card:hover, .paquete-card:hover { transform: translateY(-4px); }
-    h2 { color: #9dbfa3; text-align: center; margin-top: 0; }
-    a.download-btn { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:1rem; background:#f4a78b; color:white; padding:0.75rem 1.5rem; border-radius:6px; text-decoration:none; transition:background 0.3s; }
-    a.download-btn:hover { background: #e08a70; }
-    button { background: #f4a78b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s; }
-    button:hover { background: #e08a70; }
-    footer { text-align: center; background: #a8cbb7; color: white; padding: 1.5rem; font-size: 0.9rem; border-top-left-radius: 20px; border-top-right-radius: 20px; }
-    .paquete-list { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-    .paquete-card img { width: 60px; margin-bottom: 0.5rem; }
-    .form-group { display: flex; flex-direction: column; gap:0.5rem; }
-    form { display: flex; flex-direction: column; gap:1rem; max-width:500px; margin:auto; }
-    input, textarea, select { padding:0.75rem; border-radius:6px; border:1px solid #ccc; width:100%; font-family: 'Poppins', sans-serif; }
+    header {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1581091215363-4f11b82038bc?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    header::after {
+      content:"";
+      position:absolute;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(157,191,163,0.6);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index:0;
+    }
+    header h1, header p { position: relative; z-index: 1; }
+    header h1 { margin:0; font-size:2.5rem; }
+    header p { margin-top:1rem; font-size:1.2rem; }
+
+    nav { text-align:center; padding:1rem 0; background:#a8cbb7; }
+    nav a {
+      display:inline-block; margin:0 0.5rem; text-decoration:none;
+      color:white; font-weight:600; padding:0.5rem 1rem;
+      border-radius:8px; background:#9dbfa3; transition: background 0.3s;
+    }
+    nav a:hover { background:#f4a78b; }
+
+    section { max-width:900px; margin:2rem auto; padding:2rem 1rem; display:none; opacity:0; transition: opacity 0.5s; }
+    section.active { display:block; opacity:1; }
+
+    .resource-list, .paquete-list { display:grid; gap:1rem; }
+    .resource-card, .paquete-card {
+      background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);
+      padding:1.5rem; cursor:pointer; text-align:center; transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .resource-card:hover, .paquete-card:hover { transform: translateY(-5px); box-shadow:0 4px 12px rgba(0,0,0,0.2); }
+
+    h2 { color:#9dbfa3; text-align:center; margin-top:0; }
+
+    a.download-btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;
+      margin-top:1rem; background:#f4a78b; color:white; padding:0.75rem 1.5rem;
+      border-radius:6px; text-decoration:none; transition:background 0.3s;
+    }
+    a.download-btn:hover { background:#e08a70; }
+    .pdf-icon { width:18px; }
+
+    .paquete-list { grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
+    .paquete-card img { width:60px; margin-bottom:0.5rem; }
+
+    .form-group { display:flex; flex-direction:column; gap:0.5rem; }
+    form { display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:auto; }
+    input, textarea, select { padding:0.75rem; border-radius:6px; border:1px solid #ccc; width:100%; font-family:'Poppins',sans-serif; }
     input[type="submit"] { background:#f4a78b; color:white; border:none; cursor:pointer; transition: background 0.3s; }
     input[type="submit"]:hover { background:#e08a70; }
-    .pdf-icon { width:18px; }
+
+    footer { text-align:center; background:#a8cbb7; color:white; padding:1.5rem; font-size:0.9rem; border-top-left-radius:20px; border-top-right-radius:20px; }
+
+    /* Animaciones */
+    .fade-in { animation: fadeIn 0.5s ease forwards; }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <h1>TUTUTOR TFG/TFM</h1>
     <p>Asesoría experta para TFG y TFM con más de 10 años de experiencia guiando estudiantes universitarios.</p>
   </header>
 
+  <!-- NAV -->
   <nav>
     <a onclick="showSection('inicio')">Inicio</a>
     <a onclick="showSection('recursos')">Recursos</a>
@@ -48,7 +88,7 @@
   </nav>
 
   <!-- INICIO -->
-  <section id="inicio" class="active">
+  <section id="inicio" class="active fade-in">
     <h2>Bienvenido a TUTUTOR TFG/TFM</h2>
     <p>¿Buscas asesoría para tu TFG o TFM? Aquí ofrecemos:</p>
     <ul>
@@ -66,15 +106,15 @@
   <section id="recursos">
     <h2>Recursos Académicos</h2>
     <div class="resource-list">
-      <div class="resource-card" onclick="openResource('metodologia')">Asesoría metodológica</div>
-      <div class="resource-card" onclick="openResource('revision')">Revisión académica</div>
-      <div class="resource-card" onclick="openResource('bibliografia')">Referencias bibliográficas</div>
-      <div class="resource-card" onclick="openResource('defensa')">Preparación de la defensa</div>
-      <div class="resource-card" onclick="openResource('IA')">Humanización de textos IA</div>
-      <div class="resource-card" onclick="openResource('organizacion')">Organización y gestión del tiempo</div>
+      <div class="resource-card" onclick="openResource('metodologia')">📊 Asesoría metodológica</div>
+      <div class="resource-card" onclick="openResource('revision')">📝 Revisión académica</div>
+      <div class="resource-card" onclick="openResource('bibliografia')">📚 Referencias bibliográficas</div>
+      <div class="resource-card" onclick="openResource('defensa')">🎤 Preparación de la defensa</div>
+      <div class="resource-card" onclick="openResource('IA')">🤖 Humanización de textos IA</div>
+      <div class="resource-card" onclick="openResource('organizacion')">⏰ Organización y gestión del tiempo</div>
     </div>
 
-    <!-- Recursos individuales con icono PDF -->
+    <!-- Recursos individuales -->
     <section id="metodologia">
       <h2>Asesoría metodológica</h2>
       <p>Próximamente: guía con tips para estructurar tu TFG o TFM.</p>
@@ -129,12 +169,10 @@
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
   </section>
-
   <!-- PRECIOS -->
   <section id="precios">
     <h2>Precios y paquetes</h2>
     <div class="paquete-list">
-      <!-- Paquete 6 tarjetas con iconos representativos -->
       <div class="paquete-card" onclick="openPaquete('basico')">
         <img src="https://img.icons8.com/ios-filled/100/9dbfa3/checklist.png" alt="Básico"/>
         <h3>Paquete Básico</h3>
@@ -235,59 +273,55 @@
   <script>
     function showSection(id) {
       const sections = document.querySelectorAll('body > section');
-      sections.forEach(sec => sec.classList.remove('active'));
+      sections.forEach(sec => { sec.classList.remove('active'); sec.style.opacity=0; });
       const section = document.getElementById(id);
-      if(section) section.classList.add('active');
+      if(section) { section.classList.add('active'); section.style.opacity=1; }
       window.scrollTo({top:0, behavior:'smooth'});
 
-      // Recursos
-      if(id === 'recursos') {
-        const subSections = document.querySelectorAll('#recursos > section');
-        subSections.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#recursos .resource-list').style.display = 'grid';
+      if(id==='recursos') {
+        const subs = document.querySelectorAll('#recursos > section');
+        subs.forEach(s => s.style.display='none');
+        document.querySelector('#recursos .resource-list').style.display='grid';
       }
 
-      // Precios
-      if(id === 'precios') {
-        const subPaquetes = document.querySelectorAll('#precios > section');
-        subPaquetes.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#precios .paquete-list').style.display = 'grid';
+      if(id==='precios') {
+        const subs = document.querySelectorAll('#precios > section');
+        subs.forEach(s => s.style.display='none');
+        document.querySelector('#precios .paquete-list').style.display='grid';
       }
     }
 
     function openResource(id) {
-      const subSections = document.querySelectorAll('#recursos > section');
-      subSections.forEach(sub => sub.style.display = 'none');
-      document.querySelector('#recursos .resource-list').style.display = 'none';
-      const section = document.getElementById(id);
-      if(section) section.style.display = 'block';
+      const subs = document.querySelectorAll('#recursos > section');
+      subs.forEach(s => s.style.display='none');
+      document.querySelector('#recursos .resource-list').style.display='none';
+      document.getElementById(id).style.display='block';
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
     function openPaquete(id) {
-      const subPaquetes = document.querySelectorAll('#precios > section');
-      subPaquetes.forEach(sub => sub.style.display = 'none');
-      document.querySelector('#precios .paquete-list').style.display = 'none';
-      const section = document.getElementById(id);
-      if(section) section.style.display = 'block';
+      const subs = document.querySelectorAll('#precios > section');
+      subs.forEach(s => s.style.display='none');
+      document.querySelector('#precios .paquete-list').style.display='none';
+      document.getElementById(id).style.display='block';
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
     function backToList(parentId) {
-      if(parentId === 'recursos') {
-        const subSections = document.querySelectorAll('#recursos > section');
-        subSections.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#recursos .resource-list').style.display = 'grid';
-      } else if(parentId === 'precios') {
-        const subPaquetes = document.querySelectorAll('#precios > section');
-        subPaquetes.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#precios .paquete-list').style.display = 'grid';
+      if(parentId==='recursos') {
+        document.querySelectorAll('#recursos > section').forEach(s => s.style.display='none');
+        document.querySelector('#recursos .resource-list').style.display='grid';
+      } else if(parentId==='precios') {
+        document.querySelectorAll('#precios > section').forEach(s => s.style.display='none');
+        document.querySelector('#precios .paquete-list').style.display='grid';
       }
     }
   </script>
 
 </body>
 </html>
+
+
 
 
 
