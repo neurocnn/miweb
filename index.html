@@ -6,287 +6,265 @@
   <title>TUTUTOR TFG/TFM</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: #f9f6f2; color: #333; }
-    header { background: #9dbfa3; color: white; padding: 3rem 1rem; text-align: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
-    header h1 { margin: 0; font-size: 2rem; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: #f9f6f2; color: #333; scroll-behavior: smooth;}
+    header { background: url('https://images.unsplash.com/photo-1581092334089-4a4b2ecb9a49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Ym9va3N8fHx8fDE2NzgyODU1OTY&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover; color: white; padding: 4rem 1rem; text-align: center; position: relative;}
+    header::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(157,191,163,0.7); border-bottom-left-radius: 20px; border-bottom-right-radius:20px;}
+    header h1 { margin:0; font-size:2.5rem; position:relative; z-index:1;}
+    header p { position:relative; z-index:1; font-size:1.2rem;}
     nav { text-align: center; padding: 1rem 0; background: #a8cbb7; }
     nav a { display: inline-block; margin: 0 0.5rem; text-decoration: none; color: white; font-weight: 600; padding: 0.5rem 1rem; border-radius: 8px; background: #9dbfa3; transition: background 0.3s; }
     nav a:hover { background: #f4a78b; }
-    section { max-width: 900px; margin: 2rem auto; padding: 2rem 1rem; display: none; }
-    section.active { display: block; }
-    .resource-list, .paquete-list { display: grid; gap: 1rem; }
-    .resource-card, .paquete-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1.5rem; cursor: pointer; text-align: center; transition: transform 0.2s; }
-    .resource-card:hover, .paquete-card:hover { transform: translateY(-4px); }
-    h2 { color: #9dbfa3; text-align: center; margin-top: 0; }
+    section { max-width: 900px; margin: 2rem auto; padding: 2rem 1rem; display: none; opacity:0; transition:opacity 0.5s;}
+    section.active { display: block; opacity:1; }
+    h2 { color: #9dbfa3; text-align: center; margin-top:0; }
+    ul { list-style:none; padding:0; }
+    ul li { margin:0.5rem 0; }
+    .resource-list, .paquete-list, .testimonios, .steps { display: grid; gap:1rem; }
+    .resource-card, .paquete-card, .testimonial-card, .step-card { background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:1.5rem; cursor:pointer; text-align:center; transition: transform 0.3s; }
+    .resource-card:hover, .paquete-card:hover, .testimonial-card:hover, .step-card:hover { transform: translateY(-4px);}
     a.download-btn { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:1rem; background:#f4a78b; color:white; padding:0.75rem 1.5rem; border-radius:6px; text-decoration:none; transition:background 0.3s; }
     a.download-btn:hover { background: #e08a70; }
-    button { background: #f4a78b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s; }
-    button:hover { background: #e08a70; }
-    footer { text-align: center; background: #a8cbb7; color: white; padding: 1.5rem; font-size: 0.9rem; border-top-left-radius: 20px; border-top-right-radius: 20px; }
-    .paquete-list { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-    .paquete-card img { width: 60px; margin-bottom: 0.5rem; }
-    .form-group { display: flex; flex-direction: column; gap:0.5rem; }
-    form { display: flex; flex-direction: column; gap:1rem; max-width:500px; margin:auto; }
-    input, textarea, select { padding:0.75rem; border-radius:6px; border:1px solid #ccc; width:100%; font-family: 'Poppins', sans-serif; }
+    button { background: #f4a78b; color:white; border:none; padding:0.75rem 1.5rem; border-radius:6px; cursor:pointer; font-size:1rem; margin-top:1rem; transition: background 0.3s;}
+    button:hover { background:#e08a70; }
+    footer { text-align:center; background:#a8cbb7; color:white; padding:1.5rem; font-size:0.9rem; border-top-left-radius:20px; border-top-right-radius:20px; }
+    .paquete-list { grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
+    .paquete-card img, .step-card img { width:60px; margin-bottom:0.5rem; }
+    .form-group { display:flex; flex-direction:column; gap:0.5rem; }
+    form { display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:auto; }
+    input, textarea, select { padding:0.75rem; border-radius:6px; border:1px solid #ccc; width:100%; font-family:'Poppins', sans-serif;}
     input[type="submit"] { background:#f4a78b; color:white; border:none; cursor:pointer; transition: background 0.3s; }
-    input[type="submit"]:hover { background:#e08a70; }
+    input[type="submit"]:hover { background:#e08a70;}
     .pdf-icon { width:18px; }
+    .testimonial-card p { font-style:italic; }
+    .testimonial-card h4 { margin-top:0.5rem; color:#9dbfa3;}
+    .steps { grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>TUTUTOR TFG/TFM</h1>
-    <p>Asesoría experta para TFG y TFM con más de 10 años de experiencia guiando estudiantes universitarios.</p>
-  </header>
+<header>
+  <h1>TUTUTOR TFG/TFM</h1>
+  <p>Asesoría experta para TFG y TFM con más de 10 años de experiencia guiando estudiantes universitarios.</p>
+</header>
 
-  <nav>
-    <a onclick="showSection('inicio')">Inicio</a>
-    <a onclick="showSection('recursos')">Recursos</a>
-    <a onclick="showSection('precios')">Precios</a>
-    <a onclick="showSection('contacto')">Contacto</a>
-  </nav>
+<nav>
+  <a onclick="showSection('inicio')">Inicio</a>
+  <a onclick="showSection('recursos')">Recursos</a>
+  <a onclick="showSection('precios')">Precios</a>
+  <a onclick="showSection('contacto')">Contacto</a>
+</nav>
 
-  <!-- INICIO -->
-  <section id="inicio" class="active">
-    <h2>Bienvenido a TUTUTOR TFG/TFM</h2>
-    <p>¿Buscas asesoría para tu TFG o TFM? Aquí ofrecemos:</p>
-    <ul>
-      <li>Corrección y revisión de trabajos</li>
-      <li>Humanización de textos generados por IA</li>
-      <li>Ayuda con bibliografía y referencias</li>
-      <li>Planificación y organización del proyecto</li>
-      <li>Preparación de defensa oral</li>
-    </ul>
-    <p>Nuestro objetivo es que tu trabajo académico cumpla con los estándares más altos y sea presentado de manera profesional y clara.</p>
-    <p><strong>Nota legal:</strong> No realizamos TFG o TFM completos por ti. Solo asesoramos, corregimos y ofrecemos recursos para que tu trabajo sea tuyo y cumpla con la normativa académica.</p>
+<!-- INICIO -->
+<section id="inicio" class="active">
+  <h2>Bienvenido a TUTUTOR TFG/TFM</h2>
+  <p>¿Buscas asesoría para tu TFG o TFM? Aquí ofrecemos:</p>
+  <ul>
+    <li>Corrección y revisión de trabajos</li>
+    <li>Humanización de textos generados por IA</li>
+    <li>Ayuda con bibliografía y referencias</li>
+    <li>Planificación y organización del proyecto</li>
+    <li>Preparación de defensa oral</li>
+  </ul>
+  <h3>Cómo trabajamos</h3>
+  <div class="steps">
+    <div class="step-card"><img src="https://img.icons8.com/ios-filled/100/9dbfa3/checklist.png"/><p>Evaluación inicial</p></div>
+    <div class="step-card"><img src="https://img.icons8.com/ios-filled/100/9dbfa3/document.png"/><p>Corrección y feedback</p></div>
+    <div class="step-card"><img src="https://img.icons8.com/ios-filled/100/9dbfa3/clock.png"/><p>Seguimiento personalizado</p></div>
+  </div>
+  <h3>Testimonios de estudiantes</h3>
+  <div class="testimonios">
+    <div class="testimonial-card"><p>"Gracias a TUTUTOR mi TFG quedó impecable, aprendí a organizar mis ideas y referencias correctamente."</p><h4>Laura, 22 años</h4></div>
+    <div class="testimonial-card"><p>"El asesoramiento fue claro y directo, y la humanización de textos IA me salvó mucho tiempo."</p><h4>Javier, 24 años</h4></div>
+    <div class="testimonial-card"><p>"Muy recomendable, el feedback sobre mi defensa me dio mucha seguridad."</p><h4>María, 23 años</h4></div>
+  </div>
+  <p><strong>Nota legal:</strong> No realizamos TFG o TFM completos por ti. Solo asesoramos, corregimos y ofrecemos recursos para que tu trabajo sea tuyo y cumpla con la normativa académica.</p>
+</section>
+
+<!-- RECURSOS -->
+<section id="recursos">
+  <h2>Recursos Académicos</h2>
+  <div class="resource-list">
+    <div class="resource-card" onclick="openResource('metodologia')">Asesoría metodológica</div>
+    <div class="resource-card" onclick="openResource('revision')">Revisión académica</div>
+    <div class="resource-card" onclick="openResource('bibliografia')">Referencias bibliográficas</div>
+    <div class="resource-card" onclick="openResource('defensa')">Preparación de la defensa</div>
+    <div class="resource-card" onclick="openResource('IA')">Humanización de textos IA</div>
+    <div class="resource-card" onclick="openResource('organizacion')">Organización y gestión del tiempo</div>
+  </div>
+
+  <!-- Recursos individuales con icono PDF -->
+  <section id="metodologia">
+    <h2>Asesoría metodológica</h2>
+    <p>Próximamente: guía con tips para estructurar tu TFG o TFM.</p>
+    <a href="archivos/metodologia.pdf" download class="download-btn">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+    </a>
+    <br><button onclick="backToList('recursos')">Volver a recursos</button>
   </section>
 
-  <!-- RECURSOS -->
-  <section id="recursos">
-    <h2>Recursos Académicos</h2>
-    <div class="resource-list">
-      <div class="resource-card" onclick="openResource('metodologia')">Asesoría metodológica</div>
-      <div class="resource-card" onclick="openResource('revision')">Revisión académica</div>
-      <div class="resource-card" onclick="openResource('bibliografia')">Referencias bibliográficas</div>
-      <div class="resource-card" onclick="openResource('defensa')">Preparación de la defensa</div>
-      <div class="resource-card" onclick="openResource('IA')">Humanización de textos IA</div>
-      <div class="resource-card" onclick="openResource('organizacion')">Organización y gestión del tiempo</div>
-    </div>
-
-    <!-- Recursos individuales con icono PDF -->
-    <section id="metodologia">
-      <h2>Asesoría metodológica</h2>
-      <p>Próximamente: guía con tips para estructurar tu TFG o TFM.</p>
-      <a href="archivos/metodologia.pdf" download class="download-btn">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
-      </a>
-      <br><button onclick="backToList('recursos')">Volver a recursos</button>
-    </section>
-
-    <section id="revision">
-      <h2>Revisión académica</h2>
-      <p>Próximamente: guía para mejorar estilo, coherencia y presentación de capítulos.</p>
-      <a href="archivos/revision.pdf" download class="download-btn">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
-      </a>
-      <br><button onclick="backToList('recursos')">Volver a recursos</button>
-    </section>
-
-    <section id="bibliografia">
-      <h2>Referencias bibliográficas</h2>
-      <p>Próximamente: consejos y plantillas para formatear bibliografía en APA, Vancouver, MLA, etc.</p>
-      <a href="archivos/bibliografia.pdf" download class="download-btn">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
-      </a>
-      <br><button onclick="backToList('recursos')">Volver a recursos</button>
-    </section>
-
-    <section id="defensa">
-      <h2>Preparación de la defensa</h2>
-      <p>Próximamente: estrategias para la presentación oral y manejo de diapositivas.</p>
-      <a href="archivos/defensa.pdf" download class="download-btn">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
-      </a>
-      <br><button onclick="backToList('recursos')">Volver a recursos</button>
-    </section>
-
-    <section id="IA">
-      <h2>Humanización de textos IA</h2>
-      <p>Próximamente: cómo transformar textos generados por ChatGPT en trabajos académicos naturales y coherentes.</p>
-      <a href="archivos/IA.pdf" download class="download-btn">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
-      </a>
-      <br><button onclick="backToList('recursos')">Volver a recursos</button>
-    </section>
-
-    <section id="organizacion">
-      <h2>Organización y gestión del tiempo</h2>
-      <p>Próximamente: técnicas y plantillas para planificar tu TFG o TFM y cumplir los plazos con eficacia.</p>
-      <a href="archivos/organizacion.pdf" download class="download-btn">
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
-      </a>
-      <br><button onclick="backToList('recursos')">Volver a recursos</button>
-    </section>
+  <section id="revision">
+    <h2>Revisión académica</h2>
+    <p>Próximamente: guía para mejorar estilo, coherencia y presentación de capítulos.</p>
+    <a href="archivos/revision.pdf" download class="download-btn">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+    </a>
+    <br><button onclick="backToList('recursos')">Volver a recursos</button>
   </section>
 
-  <!-- PRECIOS -->
-  <section id="precios">
-    <h2>Precios y paquetes</h2>
-    <div class="paquete-list">
-      <!-- Paquete 6 tarjetas con iconos representativos -->
-      <div class="paquete-card" onclick="openPaquete('basico')">
-        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/checklist.png" alt="Básico"/>
-        <h3>Paquete Básico</h3>
-        <p><strong>50€</strong></p>
-      </div>
-      <div class="paquete-card" onclick="openPaquete('express')">
-        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/clock.png" alt="Express"/>
-        <h3>Paquete Express</h3>
-        <p><strong>70€</strong></p>
-      </div>
-      <div class="paquete-card" onclick="openPaquete('avanzado')">
-        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/document.png" alt="Avanzado"/>
-        <h3>Paquete Avanzado</h3>
-        <p><strong>100€</strong></p>
-      </div>
-      <div class="paquete-card" onclick="openPaquete('premium')">
-        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/star.png" alt="Premium"/>
-        <h3>Paquete Premium</h3>
-        <p><strong>200€</strong></p>
-      </div>
-      <div class="paquete-card" onclick="openPaquete('integral')">
-        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/trophy.png" alt="Integral"/>
-        <h3>Paquete Integral</h3>
-        <p><strong>250€</strong></p>
-      </div>
-      <div class="paquete-card" onclick="openPaquete('consultoria')">
-        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/user.png" alt="Consultoría"/>
-        <h3>Paquete Consultoría</h3>
-        <p><strong>30€/hora</strong></p>
-      </div>
-    </div>
-
-    <!-- Detalles de paquetes -->
-    <section id="basico">
-      <h2>Paquete Básico</h2>
-      <p>Incluye: asesoría inicial, revisión de estructura, consejos de organización y seguimiento básico.</p>
-      <button onclick="backToList('precios')">Volver a precios</button>
-    </section>
-
-    <section id="express">
-      <h2>Paquete Express</h2>
-      <p>Incluye: revisión rápida de capítulos, feedback puntual y orientación para entregar a tiempo.</p>
-      <button onclick="backToList('precios')">Volver a precios</button>
-    </section>
-
-    <section id="avanzado">
-      <h2>Paquete Avanzado</h2>
-      <p>Incluye: asesoría completa, revisión de contenido, estilo, bibliografía y orientación personalizada.</p>
-      <button onclick="backToList('precios')">Volver a precios</button>
-    </section>
-
-    <section id="premium">
-      <h2>Paquete Premium</h2>
-      <p>Incluye: todo el paquete avanzado + humanización de textos generados por IA y revisión profunda de bibliografía.</p>
-      <button onclick="backToList('precios')">Volver a precios</button>
-    </section>
-
-    <section id="integral">
-      <h2>Paquete Integral</h2>
-      <p>Incluye: asesoría completa, revisión, humanización, bibliografía, planificación y preparación para defensa.</p>
-      <button onclick="backToList('precios')">Volver a precios</button>
-    </section>
-
-    <section id="consultoria">
-      <h2>Paquete Consultoría</h2>
-      <p>Incluye: asesoría por horas personalizada según tus necesidades, ideal para consultas puntuales.</p>
-      <button onclick="backToList('precios')">Volver a precios</button>
-    </section>
-
-    <p style="text-align:center; margin-top:2rem;"><strong>Nota legal:</strong> No realizamos TFG o TFM completos por ti. Solo asesoramos y corregimos tu trabajo.</p>
+  <section id="bibliografia">
+    <h2>Referencias bibliográficas</h2>
+    <p>Próximamente: consejos y plantillas para formatear bibliografía en APA, Vancouver, MLA, etc.</p>
+    <a href="archivos/bibliografia.pdf" download class="download-btn">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+    </a>
+    <br><button onclick="backToList('recursos')">Volver a recursos</button>
   </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto y citas</h2>
-    <p>Rellena el formulario para agendar tu cita o hacer consultas:</p>
-    <form action="https://formsubmit.co/tu-email@example.com" method="POST">
-      <input type="text" name="name" placeholder="Nombre completo" required>
-      <input type="email" name="email" placeholder="Correo electrónico" required>
-      <select name="paquete" required>
-        <option value="">Selecciona el paquete</option>
-        <option value="basico">Paquete Básico - 50€</option>
-        <option value="express">Paquete Express - 70€</option>
-        <option value="avanzado">Paquete Avanzado - 100€</option>
-        <option value="premium">Paquete Premium - 200€</option>
-        <option value="integral">Paquete Integral - 250€</option>
-        <option value="consultoria">Paquete Consultoría - 30€/hora</option>
-      </select>
-      <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
-      <input type="submit" value="Enviar mensaje">
-    </form>
+  <section id="defensa">
+    <h2>Preparación de la defensa</h2>
+    <p>Próximamente: estrategias para la presentación oral y manejo de diapositivas.</p>
+    <a href="archivos/defensa.pdf" download class="download-btn">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+    </a>
+    <br><button onclick="backToList('recursos')">Volver a recursos</button>
   </section>
 
-  <footer>
-    <p>© 2025 TUTUTOR TFG/TFM | Todos los derechos reservados</p>
-  </footer>
+  <section id="IA">
+    <h2>Humanización de textos IA</h2>
+    <p>Próximamente: cómo transformar textos generados por ChatGPT en trabajos académicos naturales y coherentes.</p>
+    <a href="archivos/IA.pdf" download class="download-btn">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+    </a>
+    <br><button onclick="backToList('recursos')">Volver a recursos</button>
+  </section>
 
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('body > section');
-      sections.forEach(sec => sec.classList.remove('active'));
-      const section = document.getElementById(id);
-      if(section) section.classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
+  <section id="organizacion">
+    <h2>Organización y gestión del tiempo</h2>
+    <p>Próximamente: técnicas y plantillas para planificar tu TFG o TFM y cumplir los plazos con eficacia.</p>
+    <a href="archivos/organizacion.pdf" download class="download-btn">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+    </a>
+    <br><button onclick="backToList('recursos')">Volver a recursos</button>
+  </section>
+</section>
 
-      // Recursos
-      if(id === 'recursos') {
-        const subSections = document.querySelectorAll('#recursos > section');
-        subSections.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#recursos .resource-list').style.display = 'grid';
-      }
+<!-- PRECIOS -->
+<section id="precios">
+<h2>Precios y paquetes</h2>
+<div class="paquete-list">
+  <div class="paquete-card" onclick="openPaquete('basico')">
+    <img src="https://img.icons8.com/ios-filled/100/9dbfa3/checklist.png"/>
+    <h3>Paquete Básico</h3><p><strong>50€</strong></p>
+  </div>
+  <div class="paquete-card" onclick="openPaquete('express')">
+    <img src="https://img.icons8.com/ios-filled/100/9dbfa3/clock.png"/>
+    <h3>Paquete Express</h3><p><strong>70€</strong></p>
+  </div>
+  <div class="paquete-card" onclick="openPaquete('avanzado')">
+    <img src="https://img.icons8.com/ios-filled/100/9dbfa3/document.png"/>
+    <h3>Paquete Avanzado</h3><p><strong>100€</strong></p>
+  </div>
+  <div class="paquete-card" onclick="openPaquete('premium')">
+    <img src="https://img.icons8.com/ios-filled/100/9dbfa3/star.png"/>
+    <h3>Paquete Premium</h3><p><strong>200€</strong></p>
+  </div>
+  <div class="paquete-card" onclick="openPaquete('integral')">
+    <img src="https://img.icons8.com/ios-filled/100/9dbfa3/trophy.png"/>
+    <h3>Paquete Integral</h3><p><strong>250€</strong></p>
+  </div>
+  <div class="paquete-card" onclick="openPaquete('consultoria')">
+    <img src="https://img.icons8.com/ios-filled/100/9dbfa3/user.png"/>
+    <h3>Paquete Consultoría</h3><p><strong>30€/hora</strong></p>
+  </div>
+</div>
 
-      // Precios
-      if(id === 'precios') {
-        const subPaquetes = document.querySelectorAll('#precios > section');
-        subPaquetes.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#precios .paquete-list').style.display = 'grid';
-      }
-    }
+<!-- Detalles paquetes -->
+<section id="basico"><h2>Paquete Básico</h2><p>Incluye asesoría inicial, revisión de estructura, consejos de organización y seguimiento básico.</p><button onclick="backToList('precios')">Volver a precios</button></section>
+<section id="express"><h2>Paquete Express</h2><p>Incluye revisión rápida de capítulos, feedback puntual y orientación para entregar a tiempo.</p><button onclick="backToList('precios')">Volver a precios</button></section>
+<section id="avanzado"><h2>Paquete Avanzado</h2><p>Incluye asesoría completa, revisión de contenido, estilo, bibliografía y orientación personalizada.</p><button onclick="backToList('precios')">Volver a precios</button></section>
+<section id="premium"><h2>Paquete Premium</h2><p>Todo el paquete avanzado + humanización de textos generados por IA y revisión profunda de bibliografía.</p><button onclick="backToList('precios')">Volver a precios</button></section>
+<section id="integral"><h2>Paquete Integral</h2><p>Asesoría completa, revisión, humanización, bibliografía, planificación y preparación para defensa.</p><button onclick="backToList('precios')">Volver a precios</button></section>
+<section id="consultoria"><h2>Paquete Consultoría</h2><p>Asesoría por horas personalizada según tus necesidades, ideal para consultas puntuales.</p><button onclick="backToList('precios')">Volver a precios</button></section>
 
-    function openResource(id) {
-      const subSections = document.querySelectorAll('#recursos > section');
-      subSections.forEach(sub => sub.style.display = 'none');
-      document.querySelector('#recursos .resource-list').style.display = 'none';
-      const section = document.getElementById(id);
-      if(section) section.style.display = 'block';
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
+<p style="text-align:center; margin-top:2rem;"><strong>Nota legal:</strong> No realizamos TFG o TFM completos por ti. Solo asesoramos y corregimos tu trabajo.</p>
+</section>
 
-    function openPaquete(id) {
-      const subPaquetes = document.querySelectorAll('#precios > section');
-      subPaquetes.forEach(sub => sub.style.display = 'none');
-      document.querySelector('#precios .paquete-list').style.display = 'none';
-      const section = document.getElementById(id);
-      if(section) section.style.display = 'block';
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
+<!-- CONTACTO -->
+<section id="contacto">
+<h2>Contacto y citas</h2>
+<p>Rellena el formulario para agendar tu cita o hacer consultas:</p>
+<form id="contactForm" action="https://formsubmit.co/tu-email@example.com" method="POST">
+  <input type="text" name="name" placeholder="Nombre completo" required>
+  <input type="email" name="email" placeholder="Correo electrónico" required>
+  <select name="paquete" required>
+    <option value="">Selecciona el paquete</option>
+    <option value="basico">Paquete Básico - 50€</option>
+    <option value="express">Paquete Express - 70€</option>
+    <option value="avanzado">Paquete Avanzado - 100€</option>
+    <option value="premium">Paquete Premium - 200€</option>
+    <option value="integral">Paquete Integral - 250€</option>
+    <option value="consultoria">Paquete Consultoría - 30€/hora</option>
+  </select>
+  <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
+  <input type="submit" value="Enviar mensaje">
+</form>
+<div id="formMessage" style="text-align:center;margin-top:1rem;color:#9dbfa3;font-weight:600;display:none;">¡Mensaje enviado correctamente!</div>
+</section>
 
-    function backToList(parentId) {
-      if(parentId === 'recursos') {
-        const subSections = document.querySelectorAll('#recursos > section');
-        subSections.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#recursos .resource-list').style.display = 'grid';
-      } else if(parentId === 'precios') {
-        const subPaquetes = document.querySelectorAll('#precios > section');
-        subPaquetes.forEach(sub => sub.style.display = 'none');
-        document.querySelector('#precios .paquete-list').style.display = 'grid';
-      }
-    }
-  </script>
+<footer>
+<p>© 2025 TUTUTOR TFG/TFM | Todos los derechos reservados</p>
+</footer>
+
+<script>
+function showSection(id){
+  const sections=document.querySelectorAll('body>section');
+  sections.forEach(sec=>sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  if(id==='recursos'){
+    document.querySelectorAll('#recursos>section').forEach(sub=>sub.style.display='none');
+    document.querySelector('#recursos .resource-list').style.display='grid';
+  }
+  if(id==='precios'){
+    document.querySelectorAll('#precios>section').forEach(sub=>sub.style.display='none');
+    document.querySelector('#precios .paquete-list').style.display='grid';
+  }
+}
+
+function openResource(id){
+  document.querySelectorAll('#recursos>section').forEach(sub=>sub.style.display='none');
+  document.querySelector('#recursos .resource-list').style.display='none';
+  document.getElementById(id).style.display='block';
+}
+
+function openPaquete(id){
+  document.querySelectorAll('#precios>section').forEach(sub=>sub.style.display='none');
+  document.querySelector('#precios .paquete-list').style.display='none';
+  document.getElementById(id).style.display='block';
+}
+
+function backToList(parentId){
+  if(parentId==='recursos'){
+    document.querySelectorAll('#recursos>section').forEach(sub=>sub.style.display='none');
+    document.querySelector('#recursos .resource-list').style.display='grid';
+  } else if(parentId==='precios'){
+    document.querySelectorAll('#precios>section').forEach(sub=>sub.style.display='none');
+    document.querySelector('#precios .paquete-list').style.display='grid';
+  }
+}
+
+// Confirmación formulario
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  setTimeout(()=>{
+    document.getElementById('formMessage').style.display='block';
+    this.reset();
+  },500);
+});
+</script>
 
 </body>
 </html>
+
+
 
 
