@@ -18,17 +18,19 @@
     .resource-card, .paquete-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1.5rem; cursor: pointer; text-align: center; transition: transform 0.2s; }
     .resource-card:hover, .paquete-card:hover { transform: translateY(-4px); }
     h2 { color: #9dbfa3; text-align: center; margin-top: 0; }
-    a.download-btn { display:inline-block; margin-top:1rem; background:#f4a78b; color:white; padding:0.75rem 1.5rem; border-radius:6px; text-decoration:none; transition:background 0.3s; }
+    a.download-btn { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:1rem; background:#f4a78b; color:white; padding:0.75rem 1.5rem; border-radius:6px; text-decoration:none; transition:background 0.3s; }
     a.download-btn:hover { background: #e08a70; }
     button { background: #f4a78b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-size: 1rem; margin-top: 1rem; transition: background 0.3s; }
     button:hover { background: #e08a70; }
     footer { text-align: center; background: #a8cbb7; color: white; padding: 1.5rem; font-size: 0.9rem; border-top-left-radius: 20px; border-top-right-radius: 20px; }
     .paquete-list { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .paquete-card img { width: 60px; margin-bottom: 0.5rem; }
     .form-group { display: flex; flex-direction: column; gap:0.5rem; }
     form { display: flex; flex-direction: column; gap:1rem; max-width:500px; margin:auto; }
     input, textarea, select { padding:0.75rem; border-radius:6px; border:1px solid #ccc; width:100%; font-family: 'Poppins', sans-serif; }
     input[type="submit"] { background:#f4a78b; color:white; border:none; cursor:pointer; transition: background 0.3s; }
     input[type="submit"]:hover { background:#e08a70; }
+    .pdf-icon { width:18px; }
   </style>
 </head>
 <body>
@@ -72,46 +74,58 @@
       <div class="resource-card" onclick="openResource('organizacion')">Organización y gestión del tiempo</div>
     </div>
 
-    <!-- Recursos individuales -->
+    <!-- Recursos individuales con icono PDF -->
     <section id="metodologia">
       <h2>Asesoría metodológica</h2>
       <p>Próximamente: guía con tips para estructurar tu TFG o TFM.</p>
-      <a href="archivos/metodologia.pdf" download class="download-btn">Descargar guía PDF</a>
+      <a href="archivos/metodologia.pdf" download class="download-btn">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+      </a>
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
 
     <section id="revision">
       <h2>Revisión académica</h2>
       <p>Próximamente: guía para mejorar estilo, coherencia y presentación de capítulos.</p>
-      <a href="archivos/revision.pdf" download class="download-btn">Descargar guía PDF</a>
+      <a href="archivos/revision.pdf" download class="download-btn">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+      </a>
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
 
     <section id="bibliografia">
       <h2>Referencias bibliográficas</h2>
       <p>Próximamente: consejos y plantillas para formatear bibliografía en APA, Vancouver, MLA, etc.</p>
-      <a href="archivos/bibliografia.pdf" download class="download-btn">Descargar guía PDF</a>
+      <a href="archivos/bibliografia.pdf" download class="download-btn">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+      </a>
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
 
     <section id="defensa">
       <h2>Preparación de la defensa</h2>
       <p>Próximamente: estrategias para la presentación oral y manejo de diapositivas.</p>
-      <a href="archivos/defensa.pdf" download class="download-btn">Descargar guía PDF</a>
+      <a href="archivos/defensa.pdf" download class="download-btn">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+      </a>
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
 
     <section id="IA">
       <h2>Humanización de textos IA</h2>
       <p>Próximamente: cómo transformar textos generados por ChatGPT en trabajos académicos naturales y coherentes.</p>
-      <a href="archivos/IA.pdf" download class="download-btn">Descargar guía PDF</a>
+      <a href="archivos/IA.pdf" download class="download-btn">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+      </a>
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
 
     <section id="organizacion">
       <h2>Organización y gestión del tiempo</h2>
       <p>Próximamente: técnicas y plantillas para planificar tu TFG o TFM y cumplir los plazos con eficacia.</p>
-      <a href="archivos/organizacion.pdf" download class="download-btn">Descargar guía PDF</a>
+      <a href="archivos/organizacion.pdf" download class="download-btn">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/pdf.png" class="pdf-icon"/> Descargar guía PDF
+      </a>
       <br><button onclick="backToList('recursos')">Volver a recursos</button>
     </section>
   </section>
@@ -120,33 +134,34 @@
   <section id="precios">
     <h2>Precios y paquetes</h2>
     <div class="paquete-list">
-      <!-- Paquete 1 -->
+      <!-- Paquete 6 tarjetas con iconos representativos -->
       <div class="paquete-card" onclick="openPaquete('basico')">
+        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/checklist.png" alt="Básico"/>
         <h3>Paquete Básico</h3>
         <p><strong>50€</strong></p>
       </div>
-      <!-- Paquete 2 -->
       <div class="paquete-card" onclick="openPaquete('express')">
+        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/clock.png" alt="Express"/>
         <h3>Paquete Express</h3>
         <p><strong>70€</strong></p>
       </div>
-      <!-- Paquete 3 -->
       <div class="paquete-card" onclick="openPaquete('avanzado')">
+        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/document.png" alt="Avanzado"/>
         <h3>Paquete Avanzado</h3>
         <p><strong>100€</strong></p>
       </div>
-      <!-- Paquete 4 -->
       <div class="paquete-card" onclick="openPaquete('premium')">
+        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/star.png" alt="Premium"/>
         <h3>Paquete Premium</h3>
         <p><strong>200€</strong></p>
       </div>
-      <!-- Paquete 5 -->
       <div class="paquete-card" onclick="openPaquete('integral')">
+        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/trophy.png" alt="Integral"/>
         <h3>Paquete Integral</h3>
         <p><strong>250€</strong></p>
       </div>
-      <!-- Paquete 6 -->
       <div class="paquete-card" onclick="openPaquete('consultoria')">
+        <img src="https://img.icons8.com/ios-filled/100/9dbfa3/user.png" alt="Consultoría"/>
         <h3>Paquete Consultoría</h3>
         <p><strong>30€/hora</strong></p>
       </div>
@@ -196,7 +211,7 @@
   <section id="contacto">
     <h2>Contacto y citas</h2>
     <p>Rellena el formulario para agendar tu cita o hacer consultas:</p>
-    <form action="https://formsubmit.co/neuro4forall@gmail.com" method="POST">
+    <form action="https://formsubmit.co/tu-email@example.com" method="POST">
       <input type="text" name="name" placeholder="Nombre completo" required>
       <input type="email" name="email" placeholder="Correo electrónico" required>
       <select name="paquete" required>
@@ -268,14 +283,13 @@
         subPaquetes.forEach(sub => sub.style.display = 'none');
         document.querySelector('#precios .paquete-list').style.display = 'grid';
       }
-      window.scrollTo({top:0, behavior:'smooth'});
     }
-
-    showSection('inicio'); // Inicializa en Inicio
   </script>
 
 </body>
 </html>
+
+
 
 
 
